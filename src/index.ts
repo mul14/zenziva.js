@@ -75,15 +75,11 @@ export default function Zenziva(userkey: string, passkey: string, options?: Opti
     async _send(url: string, payload: Payload): Promise<Response> {
       const http = axios.create()
 
-      try {
-        return await http.post(url, {
-          userkey,
-          passkey,
-          ...payload,
-        })
-      } catch (e) {
-        console.error(e.message)
-      }
+      return await http.post(url, {
+        userkey,
+        passkey,
+        ...payload,
+      })
     }
   }
 }
