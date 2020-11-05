@@ -17,6 +17,9 @@ npm i zenziva
 
 ## Usage
 
+The `.sms()`, `.wa()`, `.voice()` methods will return a Promise.
+You can handle it with `.then` or `async`/`await`.
+
 ```js
 // import zenziva from 'zenziva'
 
