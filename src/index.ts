@@ -8,7 +8,6 @@ export interface Payload {
 }
 
 export interface Options {
-  timeout?: number,
   domain?: string,
   masking?: boolean,
 }
@@ -23,7 +22,6 @@ export interface Response {
 export default function Zenziva(userkey: string, passkey: string, options?: Options) {
 
   const defaultOptions: Options = {
-    timeout: 60,
     domain: '',
     masking: false,
   }
@@ -75,9 +73,7 @@ export default function Zenziva(userkey: string, passkey: string, options?: Opti
     },
 
     async _send(url: string, payload: Payload): Promise<Response> {
-      const http = axios.create({
-        timeout: this.options.timeout,
-      })
+      const http = axios.create()
 
       try {
         return await http.post(url, {

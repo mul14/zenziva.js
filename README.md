@@ -47,16 +47,3 @@ const z = zenziva('userkey', 'passkey', {
   domain: 'domain_name.com',
 })
 ```
-
-## Options
-
-```js
-// Default options
-const options = {
-  timeout: 60,
-  domain: '',
-  masking: false,
-}
-
-const z = zenziva('userkey', 'passkey', options)
-```
