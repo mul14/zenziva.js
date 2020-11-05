@@ -1,0 +1,28 @@
+{
+  "name": "zenziva",
+  "version": "0.1.0",
+  "description": "Zenziva Client (SMS / WhatsApp / Voice Message)",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./build.sh",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mul14/zenziva.js.git"
+  },
+  "keywords": ["zenziva", "sms", "whatsapp", "voice"],
+  "author": "Mulia Arifandi Nasution",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mul14/zenziva.js/issues"
+  },
+  "homepage": "https://github.com/mul14/zenziva.js#readme",
+  "dependencies": {
+    "axios": "^0.21.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0"
+  }
+}
