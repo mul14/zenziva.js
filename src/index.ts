@@ -1,15 +1,17 @@
 import axios from 'axios'
 
 export interface Payload {
-  userkey: string,
-  passkey: string,
-  nohp: string,
-  pesan: string,
+  userkey?: string,
+  passkey?: string,
+  nohp?: string,
+  pesan?: string,
+  instance?: string,
 }
 
 export interface Options {
   domain?: string,
   masking?: boolean,
+  whatsappId?: string,
 }
 
 export interface Response {
@@ -24,6 +26,7 @@ export default function Zenziva(userkey: string, passkey: string, options?: Opti
   const defaultOptions: Options = {
     domain: '',
     masking: false,
+    whatsappId: '',
   }
 
   options = Object.assign(defaultOptions, options)
@@ -41,12 +44,19 @@ export default function Zenziva(userkey: string, passkey: string, options?: Opti
     },
 
     async wa(phone: string, message: string): Promise<Response> {
-      const url = `${this.url()}/sendWA/`
+      let url = `${this.url()}/sendWA/`
 
-      return await this._send(url, {
+      const payload: Payload = {
         nohp: phone,
         pesan: message,
-      })
+      }
+
+      if (this.options.whatsappId) {
+        url = `${this.url()}/WAsendMsg/`
+        payload['instance'] = this.options.whatsappId
+      }
+
+      return await this._send(url, payload)
     },
 
     async voice(phone: string, message: string): Promise<Response> {
@@ -75,11 +85,17 @@ export default function Zenziva(userkey: string, passkey: string, options?: Opti
     async _send(url: string, payload: Payload): Promise<Response> {
       const http = axios.create()
 
-      return await http.post(url, {
-        userkey,
-        passkey,
-        ...payload,
-      })
-    }
+      try {
+        return await http.post(url, {
+          userkey,
+          passkey,
+          ...payload,
+        })
+
+      } catch(e) {
+        return e.response.data
+      }
+    },
+
   }
 }

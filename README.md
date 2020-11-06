@@ -28,25 +28,39 @@ const zenziva = require('zenziva').default
 const z = zenziva('userkey', 'passkey')
 
 // SMS
-z.sms('081234567', 'Halo')
+z.sms('0812223333', 'Halo')
 
 // WhatsApp
-z.wa('081234567', 'Halo')
+z.wa('6285551111', 'Halo')
 
 // Voice Message
-z.voice('081234567', 'Halo')
+z.voice('0812223333', 'Halo')
 ```
 
 ```js
-// Masking
+// SMS Masking
 const z = zenziva('userkey', 'passkey', {
   masking: true,
 })
+
+z.sms('0812223333', 'Halo')
 ```
 
 ```js
-// {Sms,WhatsApp} Center
+// Zenziva Sms Center
 const z = zenziva('userkey', 'passkey', {
   domain: 'domain_name.com',
 })
+
+z.sms('0812223333', 'Halo')
+```
+
+```js
+// Zenziva WhatsApp Center
+const z = zenziva('userkey', 'passkey', {
+  domain: 'domain_name.com',
+  whatsappId: '0987654321',
+})
+
+z.wa('6285551111', 'Halo')
 ```
